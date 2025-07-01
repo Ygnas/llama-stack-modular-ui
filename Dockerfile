@@ -50,7 +50,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS:-linux} GOARCH=${TARGETARCH} go build -a -o bf
 
 # Final stage
 # Use distroless as minimal base image to package the application binary
-FROM ${DISTROLESS_BASE_IMAGE}
+FROM gcr.io/distroless/static:nonroot
 WORKDIR /
 COPY --from=bff-builder /usr/src/app/bff ./
 COPY --from=ui-builder /usr/src/app/dist ./static/
